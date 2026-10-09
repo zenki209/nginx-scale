@@ -15,10 +15,10 @@ wait {
 template {
   source      = "/etc/consul-template/upstream.ctmpl"
   destination = "/etc/nginx/conf.d/upstream.inc"
-  command     = "[ -f /run/nginx.pid ] && nginx -s reload || true"
 }
 
 exec {
-  command     = ["nginx", "-g", "daemon off;"]
-  kill_signal = "SIGQUIT"
+  command       = ["nginx", "-g", "daemon off;"]
+  kill_signal   = "SIGQUIT"
+  reload_signal = "SIGHUP"
 }
