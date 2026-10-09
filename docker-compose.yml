@@ -1,0 +1,20 @@
+services:
+  consul-server:
+    image: hashicorp/consul:1.19
+    command: agent -server -bootstrap-expect=1 -ui -node=consul-server -client=0.0.0.0 -data-dir=/consul/data
+    ports:
+      - "8500:8500"
+
+  backend:
+    build: ./backend
+    environment:
+      CONSUL_SERVER: consul-server
+    depends_on:
+      - consul-server
+
+  nginx:
+    build: ./nginx
+    ports:
+      - "8080:80"
+    depends_on:
+      - consul-server

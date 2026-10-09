@@ -1,0 +1,13 @@
+{
+  "service": {
+    "name": "backend",
+    "port": 8080,
+    "tags": ["web"],
+    "check": {
+      "http": "http://localhost:8080/health",
+      "interval": "5s",
+      "timeout": "2s",
+      "deregister_critical_service_after": "1m"
+    }
+  }
+}
