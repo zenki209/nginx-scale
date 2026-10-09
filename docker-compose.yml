@@ -12,7 +12,7 @@ services:
     depends_on:
       - consul-server
 
-  nginx:
+  nginx-server:
     build: ./nginx
     ports:
       - "8080:80"

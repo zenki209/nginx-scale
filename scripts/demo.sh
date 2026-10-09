@@ -15,6 +15,6 @@ for n in 1 5 2; do
   echo "== scale backend=$n"
   docker compose up -d --build --scale backend="$n" >/dev/null 2>&1
   sleep "${SETTLE:-15}"
-  docker compose exec -T nginx cat /etc/nginx/conf.d/upstream.inc
+  docker compose exec -T nginx-server cat /etc/nginx/conf.d/upstream.inc
   hits 20
 done
